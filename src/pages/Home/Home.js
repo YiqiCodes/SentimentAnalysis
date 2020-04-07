@@ -25,7 +25,7 @@ const Home = () => {
               position: "absolute",
               minWidth: "100%",
               zIndex: -1,
-              background: "linear-gradient(270deg, #2812ff, #2164ff)",
+              background: "linear-gradient(180deg, #000000, #630101, #000000)",
             }}
           ></PageWrapper>
         </>
@@ -37,7 +37,7 @@ const Home = () => {
               position: "absolute",
               minWidth: "100%",
               zIndex: -1,
-              background: "linear-gradient(270deg, #1265ff, #2195ff)",
+              background: "linear-gradient(225deg, #000000, #ff7200, #000000)",
             }}
           ></PageWrapper>
         </>
@@ -49,7 +49,7 @@ const Home = () => {
               position: "absolute",
               minWidth: "100%",
               zIndex: -1,
-              background: "linear-gradient(270deg, #4caef8, #21e4ff)",
+              background: "linear-gradient(140deg, #000000, #d29a2a, #000000)",
             }}
           ></PageWrapper>
         </>
@@ -61,7 +61,19 @@ const Home = () => {
               position: "absolute",
               minWidth: "100%",
               zIndex: -1,
-              background: "linear-gradient(270deg, #4ce3f8, #ccfffc)",
+              background: "linear-gradient(270deg, #000000, #fbf869, #000000)",
+            }}
+          ></PageWrapper>
+        </>
+      ) : null}
+      {inputResult.score === 0 ? (
+        <>
+          <PageWrapper
+            style={{
+              position: "absolute",
+              minWidth: "100%",
+              zIndex: -1,
+              background: "linear-gradient(270deg, #000000, #ffffff)",
             }}
           ></PageWrapper>
         </>
@@ -73,7 +85,7 @@ const Home = () => {
               position: "absolute",
               minWidth: "100%",
               zIndex: -1,
-              background: "linear-gradient(270deg, #9ce344, #4db640)",
+              background: "linear-gradient(270deg, #fffed0, #fbf869)",
             }}
           ></PageWrapper>
         </>
@@ -85,7 +97,7 @@ const Home = () => {
               position: "absolute",
               minWidth: "100%",
               zIndex: -1,
-              background: "linear-gradient(270deg, #e3d644, #b3dc46)",
+              background: "linear-gradient(270deg, #fbc05d, #d29a2a)",
             }}
           ></PageWrapper>
         </>
@@ -97,7 +109,7 @@ const Home = () => {
               position: "absolute",
               minWidth: "100%",
               zIndex: -1,
-              background: "linear-gradient(270deg, #ff8343, #f0b962)",
+              background: "linear-gradient(270deg, #ff7200, #fda91e)",
             }}
           ></PageWrapper>
         </>
@@ -109,7 +121,7 @@ const Home = () => {
               position: "absolute",
               minWidth: "100%",
               zIndex: -1,
-              background: "linear-gradient(270deg, #ff1d1d, #ff935b)",
+              background: "linear-gradient(270deg, #fd9c9c, #fd5252)",
             }}
           ></PageWrapper>
         </>
@@ -119,3 +131,13 @@ const Home = () => {
 };
 
 export default Home;
+
+// -4 fuck
+// -3 abhor
+// -2 ache
+// -1 admit
+// 0
+// 1 jesus
+// 2 ally
+// 3 xoxo
+// 4 xoxoxo
