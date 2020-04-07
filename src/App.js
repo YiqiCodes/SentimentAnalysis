@@ -6,7 +6,6 @@ import { PageWrapper } from "./App.styles";
 
 // Pages
 import Home from "./pages/Home/Home";
-import SentimentInputPage2 from "./pages/SentimentInputPage2/SentimentInputPage2";
 
 const App = () => {
   return (
@@ -15,9 +14,6 @@ const App = () => {
         <PageWrapper>
           <Route exact path="/">
             <Home />
-          </Route>
-          <Route exact path="/sentiment-input-page2">
-            <SentimentInputPage2 />
           </Route>
         </PageWrapper>
       </Switch>

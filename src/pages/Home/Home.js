@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Sentiment from "sentiment";
-import { Link } from "react-router-dom";
+
+import { PageWrapper } from "../../App.styles";
 
 const sentiment = new Sentiment();
 
@@ -17,8 +18,30 @@ const Home = () => {
   return (
     <>
       Say Something: <input value={inputText} onChange={handleChange} />
-      <div>{inputResult.score}</div>
-      <Link to="/sentiment-input-page2">go to page 2</Link>
+      {inputResult.score === 1 ? (
+        <>
+          <PageWrapper
+            style={{
+              position: "absolute",
+              minWidth: "100%",
+              zIndex: -1,
+              backgroundColor: "red",
+            }}
+          ></PageWrapper>
+        </>
+      ) : null}
+      {inputResult.score === 2 ? (
+        <>
+          <PageWrapper
+            style={{
+              position: "absolute",
+              minWidth: "100%",
+              zIndex: -1,
+              backgroundColor: "blue",
+            }}
+          ></PageWrapper>
+        </>
+      ) : null}
     </>
   );
 };

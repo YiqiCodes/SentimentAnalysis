@@ -6,4 +6,7 @@ export const PageWrapper = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100%;
+  z-index: 1;
+  background: black;
+  color: white;
 `;
