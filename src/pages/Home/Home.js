@@ -18,12 +18,15 @@ const Home = () => {
   return (
     <>
       <input
+        placeholder="say something..."
         style={{
-          borderRadius: "1rem",
-          minHeight: "2rem",
-          minWidth: "10rem",
-          paddingLeft: "1rem",
-          paddingRight: "1rem",
+          minWidth: "20rem",
+          minHeight: "3rem",
+          border: "none",
+          background: "transparent",
+          borderBottom: "2px solid white",
+          textAlign: "center",
+          fontSize: "large",
         }}
         value={inputText}
         onChange={handleChange}
