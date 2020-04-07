@@ -17,8 +17,18 @@ const Home = () => {
 
   return (
     <>
-      Say Something: <input value={inputText} onChange={handleChange} />
-      {inputResult.score === -4 ? (
+      <input
+        style={{
+          borderRadius: "1rem",
+          minHeight: "2rem",
+          minWidth: "10rem",
+          paddingLeft: "1rem",
+          paddingRight: "1rem",
+        }}
+        value={inputText}
+        onChange={handleChange}
+      />
+      {inputResult.score <= -4 ? (
         <>
           <PageWrapper
             style={{
@@ -114,7 +124,7 @@ const Home = () => {
           ></PageWrapper>
         </>
       ) : null}
-      {inputResult.score === 4 ? (
+      {inputResult.score >= 4 ? (
         <>
           <PageWrapper
             style={{
