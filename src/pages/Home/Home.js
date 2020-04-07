@@ -38,10 +38,18 @@ const Home = () => {
               background: "linear-gradient(180deg, #000000, #630101, #000000)",
             }}
           ></PageWrapper>
+          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+            {" "}
+            &#129324;
+          </span>
         </>
       ) : null}
       {inputResult.score === -3 ? (
         <>
+          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+            {" "}
+            &#128545;
+          </span>
           <PageWrapper
             style={{
               position: "absolute",
@@ -54,6 +62,10 @@ const Home = () => {
       ) : null}
       {inputResult.score === -2 ? (
         <>
+          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+            {" "}
+            &#128544;
+          </span>
           <PageWrapper
             style={{
               position: "absolute",
@@ -66,6 +78,10 @@ const Home = () => {
       ) : null}
       {inputResult.score === -1 ? (
         <>
+          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+            {" "}
+            &#128542;
+          </span>
           <PageWrapper
             style={{
               position: "absolute",
@@ -90,6 +106,10 @@ const Home = () => {
       ) : null}
       {inputResult.score === 1 ? (
         <>
+          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+            {" "}
+            &#128578;
+          </span>
           <PageWrapper
             style={{
               position: "absolute",
@@ -102,6 +122,10 @@ const Home = () => {
       ) : null}
       {inputResult.score === 2 ? (
         <>
+          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+            {" "}
+            &#128512;
+          </span>
           <PageWrapper
             style={{
               position: "absolute",
@@ -114,6 +138,10 @@ const Home = () => {
       ) : null}
       {inputResult.score === 3 ? (
         <>
+          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+            {" "}
+            &#128513;
+          </span>
           <PageWrapper
             style={{
               position: "absolute",
@@ -126,6 +154,10 @@ const Home = () => {
       ) : null}
       {inputResult.score >= 4 ? (
         <>
+          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+            {" "}
+            &#128526;
+          </span>
           <PageWrapper
             style={{
               position: "absolute",
