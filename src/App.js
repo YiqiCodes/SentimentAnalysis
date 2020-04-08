@@ -15,7 +15,6 @@ const App = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            minHeight: "100%",
           }}
         >
           <Route exact path="/">

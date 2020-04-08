@@ -32,7 +32,7 @@ const Home = () => {
           minHeight: "3rem",
           border: "none",
           background: "transparent",
-          // borderBottom: "2px solid white",
+          borderBottom: "2px solid white",
           textAlign: "center",
           fontSize: "large",
           outline: "none",
@@ -42,7 +42,7 @@ const Home = () => {
       />
       {inputResult.score <= -4 ? (
         <>
-          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+          <span style={{ fontSize: "5rem", paddingTop: "1rem" }}>
             {" "}
             &#129324;
           </span>
@@ -51,7 +51,7 @@ const Home = () => {
       ) : null}
       {inputResult.score === -3 ? (
         <>
-          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+          <span style={{ fontSize: "5rem", paddingTop: "1rem" }}>
             {" "}
             &#128545;
           </span>
@@ -60,7 +60,7 @@ const Home = () => {
       ) : null}
       {inputResult.score === -2 ? (
         <>
-          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+          <span style={{ fontSize: "5rem", paddingTop: "1rem" }}>
             {" "}
             &#128544;
           </span>
@@ -69,7 +69,7 @@ const Home = () => {
       ) : null}
       {inputResult.score === -1 ? (
         <>
-          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+          <span style={{ fontSize: "5rem", paddingTop: "1rem" }}>
             {" "}
             &#128542;
           </span>
@@ -78,12 +78,16 @@ const Home = () => {
       ) : null}
       {inputResult.score === 0 ? (
         <>
+          <span style={{ fontSize: "5rem", paddingTop: "1rem" }}>
+            {" "}
+            &#128528;
+          </span>
           <PageWrapperZero />
         </>
       ) : null}
       {inputResult.score === 1 ? (
         <>
-          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+          <span style={{ fontSize: "5rem", paddingTop: "1rem" }}>
             {" "}
             &#128578;
           </span>
@@ -92,7 +96,7 @@ const Home = () => {
       ) : null}
       {inputResult.score === 2 ? (
         <>
-          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+          <span style={{ fontSize: "5rem", paddingTop: "1rem" }}>
             {" "}
             &#128512;
           </span>
@@ -101,7 +105,7 @@ const Home = () => {
       ) : null}
       {inputResult.score === 3 ? (
         <>
-          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+          <span style={{ fontSize: "5rem", paddingTop: "1rem" }}>
             {" "}
             &#128513;
           </span>
@@ -110,7 +114,7 @@ const Home = () => {
       ) : null}
       {inputResult.score >= 4 ? (
         <>
-          <span style={{ fontSize: "5rem", paddingLeft: "1rem" }}>
+          <span style={{ fontSize: "5rem", paddingTop: "1rem" }}>
             {" "}
             &#128526;
           </span>
