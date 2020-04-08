@@ -126,13 +126,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// -4 fuck
-// -3 abhor
-// -2 ache
-// -1 admit
-// 0
-// 1 jesus
-// 2 ally
-// 3 xoxo
-// 4 xoxoxo
