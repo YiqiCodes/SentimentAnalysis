@@ -5,7 +5,7 @@ export const PageWrapper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  min-height: 100%;
+  min-height: 100vh;
   z-index: 1;
   background: black;
   color: white;
@@ -17,7 +17,7 @@ export const PageWrapperMinusFour = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 100%;
   z-index: -1;
   background: linear-gradient(180deg, #000000, #630101, #000000);
@@ -30,7 +30,7 @@ export const PageWrapperMinusThree = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 100%;
   z-index: -1;
   background: linear-gradient(225deg, #000000, #ff7200, #000000);
@@ -43,7 +43,7 @@ export const PageWrapperMinusTwo = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 100%;
   z-index: -1;
   background: linear-gradient(140deg, #000000, #d29a2a, #000000);
@@ -56,7 +56,7 @@ export const PageWrapperMinusOne = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 100%;
   z-index: -1;
   background: linear-gradient(270deg, #000000, #fbf869, #000000);
@@ -69,7 +69,7 @@ export const PageWrapperZero = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 100%;
   z-index: -1;
   background: linear-gradient(180deg, #000000, #ffffff);
@@ -82,7 +82,7 @@ export const PageWrapperOne = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 100%;
   z-index: -1;
   background: linear-gradient(270deg, #fffed0, #fbf869);
@@ -95,7 +95,7 @@ export const PageWrapperTwo = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 100%;
   z-index: -1;
   background: linear-gradient(270deg, #fbc05d, #d29a2a);
@@ -108,7 +108,7 @@ export const PageWrapperThree = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 100%;
   z-index: -1;
   background: linear-gradient(270deg, #ff7200, #fda91e);
@@ -121,7 +121,7 @@ export const PageWrapperFour = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 100%;
   z-index: -1;
   background: linear-gradient(270deg, #fd9c9c, #fd5252);
