@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Analyze Your Sentiment:</h1>
+      <h1>Analyze Your Sentiment: </h1>
       <input
         style={{
           minWidth: "20rem",
@@ -46,7 +46,7 @@ const Home = () => {
             {" "}
             &#129324;
           </span>
-          <PageWrapperMinusFour />
+          <PageWrapperMinusFour className="test" />
         </>
       ) : null}
       {inputResult.score === -3 ? (
