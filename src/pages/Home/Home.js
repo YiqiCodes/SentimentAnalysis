@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <>
-      <h2>Analyze Your Sentiment: </h2>
+      <h2>Analyze My Sentiment: </h2>
       <input
         style={{
           minWidth: "15rem",
