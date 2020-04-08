@@ -32,7 +32,7 @@ const Home = () => {
           minHeight: "3rem",
           border: "none",
           background: "transparent",
-          borderBottom: "2px solid white",
+          // borderBottom: "2px solid white",
           textAlign: "center",
           fontSize: "large",
           outline: "none",
