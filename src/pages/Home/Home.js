@@ -25,10 +25,10 @@ const Home = () => {
 
   return (
     <>
-      <h1>Analyze Your Sentiment: </h1>
+      <h2>Analyze Your Sentiment: </h2>
       <input
         style={{
-          minWidth: "20rem",
+          minWidth: "15rem",
           minHeight: "3rem",
           border: "none",
           background: "transparent",
