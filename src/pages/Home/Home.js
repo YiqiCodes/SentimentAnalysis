@@ -13,12 +13,12 @@ const Home = () => {
   };
 
   const inputResult = sentiment.analyze(inputText);
-  console.log(inputResult);
+  // console.log(inputResult);
 
   return (
     <>
+      <h1>Analyze Your Sentiment:</h1>
       <input
-        placeholder="say something..."
         style={{
           minWidth: "20rem",
           minHeight: "3rem",
@@ -27,6 +27,7 @@ const Home = () => {
           borderBottom: "2px solid white",
           textAlign: "center",
           fontSize: "large",
+          outline: "none",
         }}
         value={inputText}
         onChange={handleChange}
