@@ -11,13 +11,7 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <PageWrapper
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "100vh",
-          }}
-        >
+        <PageWrapper>
           <Route exact path="/">
             <Home />
           </Route>
