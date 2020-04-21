@@ -15,7 +15,11 @@ const Home = () => {
     setInputText(event.target.value);
   };
 
-  const inputResult = sentiment.analyze(inputText);
+  let inputResult = sentiment.analyze(inputText);
+
+  if (inputResult.score >= 4) inputResult.score = 4;
+  if (inputResult.score <= -4) inputResult.score = -4;
+
   const score = inputResult.score.toString();
 
   return (
