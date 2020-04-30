@@ -6,6 +6,7 @@ import { PageWrapper } from "./App.styles";
 
 // Pages
 import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
 
 const App = () => {
   return (
@@ -13,6 +14,9 @@ const App = () => {
       <Switch>
         <PageWrapper>
           <Route exact path="/">
+            <Login />
+          </Route>
+          <Route exact path="/home">
             <Home />
           </Route>
         </PageWrapper>
