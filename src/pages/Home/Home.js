@@ -13,8 +13,9 @@ const sentiment = new Sentiment();
 const Home = () => {
   const [inputText, setInputText] = useState("");
   const [username, setUsername] = useState(
-    localStorage.getItem("username") || null
+    localStorage.getItem("Username") || null
   );
+  const [userId, setUserId] = useState(localStorage.getItem("ID") || null);
 
   const handleChange = (event) => {
     setInputText(event.target.value);
@@ -29,16 +30,13 @@ const Home = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    // console.log("submit");
-    // console.log("score", inputResult.score);
-
     const sentiment_score = inputResult.score;
-
-    // console.log(sentiment_score);
 
     Promise.all([
       axios.put(`http://localhost:3000/users/update`, {
         sentiment_score,
+        username,
+        userId,
       }),
     ])
       .then(() => {
@@ -50,6 +48,7 @@ const Home = () => {
   function logout() {
     localStorage.clear();
     setUsername(null);
+    setUserId(null);
   }
 
   return (
