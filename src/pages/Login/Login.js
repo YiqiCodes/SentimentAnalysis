@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { Link } from "react-router-dom";
-import { Form, FormControl } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import Input from "../../components/Input/Input";
 
 const Login = () => {
-  const [loggedIn, setLoggedIn] = useState({ name: null, id: null });
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
   const [userExists, setUserExists] = useState(true);
   const [userExistsRegister, setUserExistsRegister] = useState(false);
-  const [username, setUsername] = useState(
-    localStorage.getItem("username") || null
-  );
+  const history = useHistory();
 
-  function handleChangeName(event) {
-    setUsername(event.target.value);
-  }
+  const getUser = async () => {
+    const user = await localStorage.getItem("username");
+    if (user) history.push("/home");
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) history.push("/home");
+  }, [loggedIn]);
 
   function register() {
     console.log("register");
@@ -23,13 +31,9 @@ const Login = () => {
       axios.put(`http://localhost:3000/users/register`, { username }),
     ])
       .then((response) => {
-        if (response[0].status === 200) {
-          setUserExistsRegister(true);
-        } else {
-          // localStorage.setItem("newUser", true);
-          login();
-          console.log("else");
-        }
+        if (response[0].headers["content-length"] === "20")
+          console.log("No input but still in DB");
+        else setLoggedIn(true);
       })
       .catch((error) => {
         console.log(error);
@@ -40,15 +44,12 @@ const Login = () => {
     Promise.all([axios.get(`http://localhost:3000/users/${username}`)])
       .then((response) => {
         if (response[0].data.length === 0) {
-          console.log("response", response);
           setUserExists(false);
         } else {
-          console.log("response2", response);
-          setUserExists(true);
-          const userz = response[0].data[0];
-          localStorage.setItem("username", userz.name);
-          localStorage.setItem("id", userz.id);
-          setLoggedIn({ name: userz.name, id: userz.id });
+          const userLogin = response[0].data;
+          localStorage.setItem("Username", userLogin.name);
+          localStorage.setItem("ID", userLogin.id);
+          setLoggedIn(true);
         }
       })
       .catch((error) => {
@@ -56,26 +57,18 @@ const Login = () => {
       });
   }
 
+  const handleOnChangeUsername = (e) => {
+    setUsername(e.target.value);
+  };
+
   return (
     <>
-      <Form inline>
-        <FormControl
-          type="text"
-          placeholder="Register"
-          onChange={handleChangeName}
-        />
-        <Link to="/home">
-          <button onClick={() => register()}>Register</button>
-        </Link>
-      </Form>
-      <Form inline>
-        <FormControl
-          type="text"
-          placeholder="Login"
-          onChange={handleChangeName}
-        />
-        <button onClick={() => login()}>Login</button>
-      </Form>
+      <Input value={username} handleOnChange={handleOnChangeUsername} />
+      <button onClick={() => register()}>Register</button>
+      <button onClick={() => login()}>Login</button>
+      {!userExists ? (
+        <p style={{ color: "red" }}>username does not exist please register</p>
+      ) : null}
     </>
   );
 };
