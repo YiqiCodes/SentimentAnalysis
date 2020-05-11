@@ -24,30 +24,30 @@ const Login = () => {
     if (loggedIn) history.push("/home");
   }, [loggedIn]);
 
-  function register() {
-    console.log("register");
-    console.log("username", username);
+  const register = () => {
     Promise.all([
       axios.put(`http://localhost:3000/users/register`, { username }),
     ])
       .then((response) => {
-        if (response[0].headers["content-length"] === "20")
-          console.log("No input but still in DB");
-        else setLoggedIn(true);
+        if (response[0].headers["content-length"] === "20") {
+          setUserExistsRegister(true);
+        } else {
+          login();
+        }
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
-  function login() {
+  const login = () => {
     Promise.all([axios.get(`http://localhost:3000/users/${username}`)])
       .then((response) => {
         if (response[0].data.length === 0) {
           setUserExists(false);
         } else {
           const userLogin = response[0].data;
-          localStorage.setItem("Username", userLogin.name);
+          localStorage.setItem("Username", userLogin.username);
           localStorage.setItem("ID", userLogin.id);
           setLoggedIn(true);
         }
@@ -55,7 +55,7 @@ const Login = () => {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   const handleOnChangeUsername = (e) => {
     setUsername(e.target.value);
@@ -67,7 +67,12 @@ const Login = () => {
       <button onClick={() => register()}>Register</button>
       <button onClick={() => login()}>Login</button>
       {!userExists ? (
-        <p style={{ color: "red" }}>username does not exist please register</p>
+        <p style={{ color: "red" }}>Username does not Exist Please Register</p>
+      ) : null}
+      {userExistsRegister ? (
+        <p style={{ color: "red" }}>
+          User Already Exists or Invalid Name - Try Again
+        </p>
       ) : null}
     </>
   );

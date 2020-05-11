@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Sentiment from "sentiment";
@@ -12,10 +12,15 @@ const sentiment = new Sentiment();
 
 const Home = () => {
   const [inputText, setInputText] = useState("");
-  const [username, setUsername] = useState(
-    localStorage.getItem("Username") || null
-  );
-  const [userId, setUserId] = useState(localStorage.getItem("ID") || null);
+  const [username, setUsername] = useState(null);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const username = localStorage.getItem("Username");
+    const userId = localStorage.getItem("ID");
+    setUsername(username);
+    setUserId(userId);
+  }, []);
 
   const handleChange = (event) => {
     setInputText(event.target.value);
@@ -28,7 +33,7 @@ const Home = () => {
 
   const score = inputResult.score.toString();
 
-  function onSubmit(e) {
+  const onSubmit = (e) => {
     e.preventDefault();
     const sentiment_score = inputResult.score;
 
@@ -43,13 +48,13 @@ const Home = () => {
         console.log("done");
       })
       .catch((error) => console.log(error));
-  }
+  };
 
-  function logout() {
+  const logout = () => {
     localStorage.clear();
     setUsername(null);
     setUserId(null);
-  }
+  };
 
   return (
     <>
