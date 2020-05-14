@@ -38,7 +38,7 @@ const Home = () => {
     const sentiment_score = inputResult.score;
 
     Promise.all([
-      axios.put(`http://localhost:3000/users/update`, {
+      axios.put(`https://analyzemysentiment.herokuapp.com/users/update`, {
         sentiment_score,
         username,
         userId,
