@@ -4,6 +4,9 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Input from "../../components/Input/Input";
 
+const baseUrl = process.env.baseUrl || "http://localhost:3000";
+console.log("base", baseUrl);
+
 const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
@@ -25,9 +28,7 @@ const Login = () => {
   }, [loggedIn]);
 
   const register = () => {
-    Promise.all([
-      axios.put(`http://localhost:3000/users/register`, { username }),
-    ])
+    Promise.all([axios.put(`${baseUrl}/users/register`, { username })])
       .then((response) => {
         if (response[0].headers["content-length"] === "20") {
           setUserExistsRegister(true);
@@ -41,7 +42,7 @@ const Login = () => {
   };
 
   const login = () => {
-    Promise.all([axios.get(`http://localhost:3000/users/${username}`)])
+    Promise.all([axios.get(`${baseUrl}/users/${username}`)])
       .then((response) => {
         if (response[0].data.length === 0) {
           setUserExists(false);
