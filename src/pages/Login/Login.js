@@ -29,7 +29,7 @@ const Login = () => {
 
   const register = () => {
     Promise.all([
-      axios.put(`https://analyzemysentiment.netlify.app/users/register`, {
+      axios.put(`https://analyzemysentiment.herokuapp.com/users/register`, {
         username,
       }),
     ])
@@ -47,7 +47,7 @@ const Login = () => {
 
   const login = () => {
     Promise.all([
-      axios.get(`https://analyzemysentiment.netlify.app/users/${username}`),
+      axios.get(`https://analyzemysentiment.herokuapp.com/users/${username}`),
     ])
       .then((response) => {
         if (response[0].data.length === 0) {
