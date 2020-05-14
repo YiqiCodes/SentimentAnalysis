@@ -4,8 +4,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Input from "../../components/Input/Input";
 
-const baseUrl = process.env.baseUrl || "http://localhost:3000";
-console.log("base", baseUrl);
+// const baseUrl = process.env.REACT_APP_BASE_URL;
+// console.log("base", baseUrl);
 
 const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -28,7 +28,11 @@ const Login = () => {
   }, [loggedIn]);
 
   const register = () => {
-    Promise.all([axios.put(`${baseUrl}/users/register`, { username })])
+    Promise.all([
+      axios.put(`https://analyzemysentiment.netlify.app/users/register`, {
+        username,
+      }),
+    ])
       .then((response) => {
         if (response[0].headers["content-length"] === "20") {
           setUserExistsRegister(true);
@@ -42,7 +46,9 @@ const Login = () => {
   };
 
   const login = () => {
-    Promise.all([axios.get(`${baseUrl}/users/${username}`)])
+    Promise.all([
+      axios.get(`https://analyzemysentiment.netlify.app/users/${username}`),
+    ])
       .then((response) => {
         if (response[0].data.length === 0) {
           setUserExists(false);
