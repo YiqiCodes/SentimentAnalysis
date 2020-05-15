@@ -4,8 +4,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Input from "../../components/Input/Input";
 
-// const baseUrl = process.env.REACT_APP_BASE_URL;
-// console.log("base", baseUrl);
+import { LoginButton, LoginContainer } from "./Login.styles.js";
 
 const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -70,17 +69,25 @@ const Login = () => {
 
   return (
     <>
-      <Input value={username} handleOnChange={handleOnChangeUsername} />
-      <button onClick={() => register()}>Register</button>
-      <button onClick={() => login()}>Login</button>
-      {!userExists ? (
-        <p style={{ color: "red" }}>Username does not Exist Please Register</p>
-      ) : null}
-      {userExistsRegister ? (
-        <p style={{ color: "red" }}>
-          User Already Exists or Invalid Name - Try Again
-        </p>
-      ) : null}
+      <LoginContainer>
+        <Input
+          placeholder="hi"
+          value={username}
+          handleOnChange={handleOnChangeUsername}
+        />
+        <LoginButton onClick={() => register()}>Register</LoginButton>
+        <LoginButton onClick={() => login()}>Login</LoginButton>
+        {!userExists ? (
+          <p style={{ color: "red" }}>
+            Username does not Exist Please Register
+          </p>
+        ) : null}
+        {userExistsRegister ? (
+          <p style={{ color: "red" }}>
+            User Already Exists or Invalid Name - Try Again
+          </p>
+        ) : null}
+      </LoginContainer>
     </>
   );
 };
