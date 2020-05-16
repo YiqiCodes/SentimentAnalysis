@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactPlayer from "react-player";
 import axios from "axios";
 
 import { useHistory } from "react-router-dom";
@@ -69,25 +70,17 @@ const Login = () => {
 
   return (
     <>
-      <LoginContainer>
-        <Input
-          placeholder="hi"
-          value={username}
-          handleOnChange={handleOnChangeUsername}
-        />
-        <LoginButton onClick={() => register()}>Register</LoginButton>
-        <LoginButton onClick={() => login()}>Login</LoginButton>
-        {!userExists ? (
-          <p style={{ color: "red" }}>
-            Username does not Exist Please Register
-          </p>
-        ) : null}
-        {userExistsRegister ? (
-          <p style={{ color: "red" }}>
-            User Already Exists or Invalid Name - Try Again
-          </p>
-        ) : null}
-      </LoginContainer>
+      <Input value={username} handleOnChange={handleOnChangeUsername} />
+      <LoginButton onClick={() => login()}>Login</LoginButton>
+      <LoginButton onClick={() => register()}>Register</LoginButton>
+      {!userExists ? (
+        <p style={{ color: "red" }}>Username does not Exist Please Register</p>
+      ) : null}
+      {userExistsRegister ? (
+        <p style={{ color: "red" }}>
+          User Already Exists or Invalid Name - Try Again
+        </p>
+      ) : null}
     </>
   );
 };
