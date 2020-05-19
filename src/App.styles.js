@@ -8,7 +8,7 @@ export const PageWrapper = styled.div`
   justify-content: center;
   min-height: 100vh;
   z-index: 1;
-  background: black;
-  color: white;
+  background: white;
+  color: black;
   background-size: 400% 400%;
 `;

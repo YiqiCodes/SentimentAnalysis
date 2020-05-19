@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import ReactPlayer from "react-player";
 import axios from "axios";
 
-import { useHistory } from "react-router-dom";
-import Input from "../../components/Input/Input";
+// Components
+import Input from "../Input";
+import { notification } from "antd";
+import { LoginButton } from "./Login.styles.js";
 
-import { LoginButton, LoginContainer } from "./Login.styles.js";
+// Hooks
+import useUsers from "../../hooks/api/Users";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -13,19 +16,26 @@ const Login = () => {
   const [userExists, setUserExists] = useState(true);
   const [userExistsRegister, setUserExistsRegister] = useState(false);
   const history = useHistory();
+  const { users, getUsers } = useUsers();
 
-  const getUser = async () => {
+  const getLocalStorageUser = async () => {
     const user = await localStorage.getItem("username");
     if (user) history.push("/home");
   };
 
   useEffect(() => {
-    getUser();
+    getLocalStorageUser();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     if (loggedIn) history.push("/home");
+    // eslint-disable-next-line
   }, [loggedIn]);
+
+  useEffect(() => {
+    if (users.error) notification.error("Error", users.error);
+  }, [users.error]);
 
   const register = () => {
     Promise.all([
@@ -46,22 +56,23 @@ const Login = () => {
   };
 
   const login = () => {
-    Promise.all([
-      axios.get(`https://analyzemysentiment.herokuapp.com/users/${username}`),
-    ])
-      .then((response) => {
-        if (response[0].data.length === 0) {
+    if (username) {
+      getUsers(username).then((user) => {
+        if (!user) {
           setUserExists(false);
-        } else {
-          const userLogin = response[0].data;
-          localStorage.setItem("Username", userLogin.username);
-          localStorage.setItem("ID", userLogin.id);
-          setLoggedIn(true);
+          return;
         }
-      })
-      .catch((error) => {
-        console.log(error);
+
+        localStorage.setItem("Username", user.username);
+        localStorage.setItem("ID", user.id);
+        setLoggedIn(true);
       });
+    } else {
+      notification.error({
+        message: "Error",
+        description: "Please enter a username",
+      });
+    }
   };
 
   const handleOnChangeUsername = (e) => {
