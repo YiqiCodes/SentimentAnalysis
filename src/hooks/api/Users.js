@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+// import login from "../../components/Login/Login";
+
 const useUsers = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
@@ -24,7 +26,25 @@ const useUsers = () => {
       });
   };
 
-  const createUser = () => {};
+  const createUser = (username) => {
+    setLoading(true);
+    return axios
+      .put(`https://analyzemysentiment.herokuapp.com/users/register`, {
+        username,
+      })
+      .then((response) => {
+        if (response.data) {
+          setData(response.data);
+          return response.data;
+        }
+        if (!response.data) return null;
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  };
 
   const updateUser = () => {};
 

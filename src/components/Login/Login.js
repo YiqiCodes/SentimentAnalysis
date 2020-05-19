@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 // Components
 import Input from "../Input";
@@ -13,9 +12,8 @@ import { useHistory } from "react-router-dom";
 const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const [userExistsRegister, setUserExistsRegister] = useState(false);
   const history = useHistory();
-  const { users, getUsers } = useUsers();
+  const { users, getUsers, createUser } = useUsers();
 
   const getLocalStorageUser = async () => {
     const user = await localStorage.getItem("username");
@@ -37,28 +35,29 @@ const Login = () => {
   }, [users.error]);
 
   const register = () => {
-    Promise.all([
-      axios.put(`https://analyzemysentiment.herokuapp.com/users/register`, {
-        username,
-      }),
-    ])
-      .then((response) => {
-        if (response[0].headers["content-length"] === "20") {
-          setUserExistsRegister(true);
-        } else {
-          login();
+    if (username) {
+      createUser(username).then((user) => {
+        if (user) login();
+        else {
+          notification.error({
+            message: "Error",
+            description: "Please register with a unique username",
+          });
+          return;
         }
-      })
-      .catch((error) => {
-        console.log(error);
       });
+    } else {
+      notification.error({
+        message: "Error",
+        description: "Please enter a unique username",
+      });
+    }
   };
 
   const login = () => {
     if (username) {
       getUsers(username).then((user) => {
         if (!user) {
-          // setUserExists(false);
           notification.error({
             message: "Error",
             description: "User does not exist, please register",
@@ -86,11 +85,6 @@ const Login = () => {
       <Input value={username} handleOnChange={handleOnChangeUsername} />
       <LoginButton onClick={() => login()}>Login</LoginButton>
       <LoginButton onClick={() => register()}>Register</LoginButton>
-      {userExistsRegister ? (
-        <p style={{ color: "red" }}>
-          User Already Exists or Invalid Name - Try Again
-        </p>
-      ) : null}
     </>
   );
 };
