@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Sentiment from "sentiment";
 
+// Components
+import { Input, Button } from "antd";
+import NavBar from "../../components/NavBar";
+import Emoji from "../../components/Emoji";
+
 // Styles
-import { SentimentInput } from "./Home.styles.js";
-import Emoji from "../../components/Emoji.js";
-import Background from "../../components/Background.js";
+import { InputWrapper } from "./Home.styles.js";
 
 const sentiment = new Sentiment();
 
@@ -50,24 +52,21 @@ const Home = () => {
       .catch((error) => console.log(error));
   };
 
-  const logout = () => {
-    localStorage.clear();
-    setUsername(null);
-    setUserId(null);
-  };
-
   return (
     <>
-      <h2>Analyze My Sentiment: </h2>
-      <SentimentInput value={inputText} onChange={handleChange} />
+      <NavBar />
+      <h2>{`Welcome, ${username}`}</h2>
+      <InputWrapper>
+        <Input.TextArea
+          value={inputText}
+          onChange={handleChange}
+          onPressEnter={onSubmit}
+        />
+      </InputWrapper>
       <Emoji score={score} />
-      <Background score={score} />
       <form onSubmit={onSubmit}>
-        <button>Submit</button>
+        <Button>Save</Button>
       </form>
-      <Link to="/">
-        <button onClick={() => logout()}>Logout</button>
-      </Link>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactPlayer from "react-player";
 import myVideo from "../../assets/img/WelcomeVideo.mp4";
-import Login from "./../Login/Login";
+import Login from "../../components/Login";
 import { LoginBox } from "./Welcome.styles.js";
 
 function Welcome(props) {
