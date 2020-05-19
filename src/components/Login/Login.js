@@ -13,7 +13,6 @@ import { useHistory } from "react-router-dom";
 const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const [userExists, setUserExists] = useState(true);
   const [userExistsRegister, setUserExistsRegister] = useState(false);
   const history = useHistory();
   const { users, getUsers } = useUsers();
@@ -59,10 +58,13 @@ const Login = () => {
     if (username) {
       getUsers(username).then((user) => {
         if (!user) {
-          setUserExists(false);
+          // setUserExists(false);
+          notification.error({
+            message: "Error",
+            description: "User does not exist, please register",
+          });
           return;
         }
-
         localStorage.setItem("Username", user.username);
         localStorage.setItem("ID", user.id);
         setLoggedIn(true);
@@ -84,9 +86,6 @@ const Login = () => {
       <Input value={username} handleOnChange={handleOnChangeUsername} />
       <LoginButton onClick={() => login()}>Login</LoginButton>
       <LoginButton onClick={() => register()}>Register</LoginButton>
-      {!userExists ? (
-        <p style={{ color: "red" }}>Username does not Exist Please Register</p>
-      ) : null}
       {userExistsRegister ? (
         <p style={{ color: "red" }}>
           User Already Exists or Invalid Name - Try Again
