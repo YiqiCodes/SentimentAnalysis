@@ -83,8 +83,15 @@ const Login = () => {
   return (
     <>
       <Input value={username} handleOnChange={handleOnChangeUsername} />
-      <LoginButton onClick={() => login()}>Login</LoginButton>
-      <LoginButton onClick={() => register()}>Register</LoginButton>
+      <LoginButton style={{ background: "cadetblue" }} onClick={() => login()}>
+        Login
+      </LoginButton>
+      <LoginButton
+        style={{ background: "darkslategray" }}
+        onClick={() => register()}
+      >
+        Register
+      </LoginButton>
     </>
   );
 };
