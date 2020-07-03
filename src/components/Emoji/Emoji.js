@@ -15,7 +15,7 @@ const scoreMap = {
 
 const Emoji = ({ score }) => {
   return (
-    <span style={{ fontSize: "5rem", paddingTop: "1rem" }} role="img">
+    <span style={{ fontSize: "3rem", padding: "2px 0px" }} role="img">
       {scoreMap[score]}
     </span>
   );

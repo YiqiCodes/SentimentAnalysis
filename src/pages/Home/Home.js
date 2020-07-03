@@ -60,27 +60,29 @@ const Home = () => {
   const scoreTimeline = scores.data.map((score, index) => (
     <Timeline.Item
       key={index}
-    >{`${score.text} - ${score.sentiment_score}`}</Timeline.Item>
+    >{`${score.text} : ${score.sentiment_score}`}</Timeline.Item>
   ));
 
   return (
-    <PageContainer>
+    <>
       <NavBar />
-      <h2>{`Welcome, ${username}`}</h2>
-      <InputWrapper>
-        <Input.TextArea
-          value={text}
-          onChange={handleChange}
-          onPressEnter={onSaveScore}
-        />
-      </InputWrapper>
-      <Emoji score={score} />
-      <Button onClick={onSaveScore}>Save</Button>
+      <PageContainer>
+        <h2>{`Welcome, ${username}`}</h2>
+        <InputWrapper>
+          <Input.TextArea
+            value={text}
+            onChange={handleChange}
+            onPressEnter={onSaveScore}
+          />
+        </InputWrapper>
+        <Emoji score={score} />
+        <Button onClick={onSaveScore}>Save</Button>
 
-      <TimelineWrapper>
-        <Timeline style={{ paddingTop: "1rem" }}>{scoreTimeline}</Timeline>
-      </TimelineWrapper>
-    </PageContainer>
+        <TimelineWrapper>
+          <Timeline>{scoreTimeline}</Timeline>
+        </TimelineWrapper>
+      </PageContainer>
+    </>
   );
 };
 

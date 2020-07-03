@@ -7,16 +7,30 @@ export const PageContainer = styled.div`
   align-items: center;
   padding: 32px;
   width: 100%;
-  margin-top: 127px;
+  height: 80%;
+  /* margin-top: 127px; */
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
   width: 50%;
+  height: 50%;
+  max-height: 200px;
+  @media screen and (max-width: 376px) {
+    width: 75%;
+  }
 `;
 
 export const TimelineWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+  margin-top: 1rem;
+  width: 50%;
+  @media screen and (max-width: 376px) {
+    width: 75%;
+  }
   .ant-timeline {
-    margin: 32px 0 0;
+    margin: 12px 0 0;
   }
 `;
