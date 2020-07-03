@@ -1,73 +1,85 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
 import Sentiment from "sentiment";
 
 // Components
-import { Input, Button } from "antd";
+import { Input, Button, notification, Timeline } from "antd";
 import NavBar from "../../components/NavBar";
 import Emoji from "../../components/Emoji";
 
 // Styles
-import { InputWrapper } from "./Home.styles.js";
+import { PageContainer, InputWrapper, TimelineWrapper } from "./Home.styles.js";
+
+// Hooks
+import useScores from "../../hooks/api/Scores";
 
 const sentiment = new Sentiment();
 
 const Home = () => {
-  const [inputText, setInputText] = useState("");
+  const [text, setText] = useState("");
   const [username, setUsername] = useState(null);
   const [userId, setUserId] = useState(null);
+  const { scores, getScores, createScore } = useScores();
+  const { error } = scores;
 
   useEffect(() => {
     const username = localStorage.getItem("Username");
     const userId = localStorage.getItem("ID");
     setUsername(username);
     setUserId(userId);
+    getScores(userId);
   }, []);
 
+  useEffect(() => {
+    console.log(error);
+    // if (error) notification.error({ type: "error", message: error });
+  }, [error]);
+
   const handleChange = (event) => {
-    setInputText(event.target.value);
+    setText(event.target.value);
   };
 
-  let inputResult = sentiment.analyze(inputText);
+  let inputResult = sentiment.analyze(text);
 
   if (inputResult.score >= 4) inputResult.score = 4;
   if (inputResult.score <= -4) inputResult.score = -4;
 
   const score = inputResult.score.toString();
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const sentiment_score = inputResult.score;
+  const onSaveScore = async () => {
+    await createScore({
+      userId,
+      score: inputResult.score,
+      text,
+    });
 
-    Promise.all([
-      axios.put(`https://analyzemysentiment.herokuapp.com/users/update`, {
-        sentiment_score,
-        username,
-        userId,
-      }),
-    ])
-      .then(() => {
-        console.log("done");
-      })
-      .catch((error) => console.log(error));
+    await getScores(userId);
   };
 
+  const scoreTimeline = scores.data.map((score, index) => (
+    <Timeline.Item
+      key={index}
+    >{`${score.text} - ${score.sentiment_score}`}</Timeline.Item>
+  ));
+
   return (
-    <>
+    <PageContainer>
       <NavBar />
       <h2>{`Welcome, ${username}`}</h2>
       <InputWrapper>
         <Input.TextArea
-          value={inputText}
+          value={text}
           onChange={handleChange}
-          onPressEnter={onSubmit}
+          onPressEnter={onSaveScore}
         />
       </InputWrapper>
       <Emoji score={score} />
-      <form onSubmit={onSubmit}>
-        <Button>Save</Button>
-      </form>
-    </>
+      <Button onClick={onSaveScore}>Save</Button>
+
+      <TimelineWrapper>
+        <Timeline style={{ paddingTop: "1rem" }}>{scoreTimeline}</Timeline>
+      </TimelineWrapper>
+    </PageContainer>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { get, post, put } from "../../libs/api";
 
 // import login from "../../components/Login/Login";
 
@@ -8,16 +8,15 @@ const useUsers = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
 
-  const getUsers = (username) => {
+  const getUserByID = (username) => {
+    setError("");
     setLoading(true);
-    return axios
-      .get(`https://analyzemysentiment.herokuapp.com/users/${username}`)
+    return get(`/users/${username}`)
       .then((response) => {
         if (response.data) {
           setData(response.data);
           return response.data;
         }
-        if (!response.data) return null;
         setLoading(false);
       })
       .catch((error) => {
@@ -27,17 +26,16 @@ const useUsers = () => {
   };
 
   const createUser = (username) => {
+    setError("");
     setLoading(true);
-    return axios
-      .put(`https://analyzemysentiment.herokuapp.com/users/register`, {
-        username,
-      })
+    return post(`/users/register`, {
+      username,
+    })
       .then((response) => {
         if (response.data) {
           setData(response.data);
           return response.data;
         }
-        if (!response.data) return null;
         setLoading(false);
       })
       .catch((error) => {
@@ -46,7 +44,16 @@ const useUsers = () => {
       });
   };
 
-  const updateUser = () => {};
+  const updateUser = ({ username, userId }) =>
+    put(`/user`, {
+      username,
+      userId,
+    })
+      .then((response) => {
+        console.log("done", response.data);
+        return response.data;
+      })
+      .catch((error) => console.log(error));
 
   const users = {
     loading,
@@ -56,7 +63,7 @@ const useUsers = () => {
 
   return {
     users,
-    getUsers,
+    getUserByID,
     createUser,
     updateUser,
   };

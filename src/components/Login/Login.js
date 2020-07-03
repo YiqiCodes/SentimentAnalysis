@@ -13,7 +13,7 @@ const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const history = useHistory();
-  const { users, getUsers, createUser } = useUsers();
+  const { users, getUserByID, createUser } = useUsers();
 
   const getLocalStorageUser = async () => {
     const user = await localStorage.getItem("username");
@@ -31,6 +31,7 @@ const Login = () => {
   }, [loggedIn]);
 
   useEffect(() => {
+    console.log("users.error", users.error);
     if (users.error) notification.error("Error", users.error);
   }, [users.error]);
 
@@ -39,15 +40,14 @@ const Login = () => {
       createUser(username).then((user) => {
         if (user) login();
         else {
-          notification.error({
+          return notification.error({
             message: "Error",
             description: "Please register with a unique username",
           });
-          return;
         }
       });
     } else {
-      notification.error({
+      return notification.error({
         message: "Error",
         description: "Please enter a unique username",
       });
@@ -56,13 +56,12 @@ const Login = () => {
 
   const login = () => {
     if (username) {
-      getUsers(username).then((user) => {
+      getUserByID(username).then((user) => {
         if (!user) {
-          notification.error({
+          return notification.error({
             message: "Error",
             description: "User does not exist, please register",
           });
-          return;
         }
         localStorage.setItem("Username", user.username);
         localStorage.setItem("ID", user.id);

@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   padding: 40px;
   box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
 `;
 
 export const HeaderText = styled.div`
