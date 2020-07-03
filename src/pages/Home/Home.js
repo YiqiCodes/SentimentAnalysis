@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Sentiment from "sentiment";
 
 // Components
-import { Input, Button, notification, Timeline } from "antd";
+import { Input, Button, Timeline } from "antd";
 import NavBar from "../../components/NavBar";
 import Emoji from "../../components/Emoji";
 
@@ -28,6 +28,7 @@ const Home = () => {
     setUsername(username);
     setUserId(userId);
     getScores(userId);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
