@@ -7,6 +7,7 @@ export const PageContainer = styled.div`
   align-items: center;
   padding: 32px;
   width: 100%;
+  margin-top: 127px;
 `;
 
 export const InputWrapper = styled.div`
